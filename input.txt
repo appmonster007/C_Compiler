@@ -1,0 +1,13 @@
+int x, y;  
+   
+int main() 
+{
+	int x;
+	while(1) 
+	{
+		int j = 65;
+		float x;
+		int y, z;
+	}
+	
+}
