@@ -3,9 +3,13 @@
     #include<stdlib.h>
     #include "grammarfile.tab.h"
 	#include "symbolTable.h"
-        
+    #include <string.h>
+    
+
     #define ECHO fwrite(yytext, yyleng, 1, yyout)
     void incCount(int inc);
+    char t = 'A';
+
 %}
 
 D			[0-9]
@@ -58,7 +62,11 @@ L?\"(\\.|[^\\"])*\"                 {ECHO; return(LITERAL); }
 
 void incCount(int inc){
     if(inc==1)
-        pushScope();
+    {
+        pushScope(&t);
+        t++;
+        // printf("--------------------\n");
+    }
     else
         popScope();
     printf(" // scope <=> %d\n",curScope->scopeDepth);

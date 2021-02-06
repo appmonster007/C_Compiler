@@ -1443,7 +1443,9 @@ int main()
 {
 	initScope();
 	printf(" // scope <=> %d\n",curScope->scopeDepth);
-	return yyparse();
+	int k = yyparse();
+	dumpSymTab();
+	return k;
 }
 
 void yyerror (char *s) {fprintf(stderr, "%s\n",s);}
