@@ -126,7 +126,6 @@ init_declarator
 	{
 		union valptr addr;
 		addr.i = (int*)malloc(sizeof(int));
-		*(addr.i) = 0;
 		// printf("\t->%d\t", *(addr.i));
 
 		enum dataTYPE valTYPE = INT;

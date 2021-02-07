@@ -22,4 +22,4 @@ lexer:		$(LF).l
 code:		$(OBJS)
 		$(CC) $(OBJS) -o $@ -lfl -lm
 
-clean:;	rm ‑f $(OBJS) *.o $(PROGRAM) y.*  lex.yy.* y.tab.* *.tab.* *.output
+clean:;	rm ‑f $(OBJS) *.o $(PROGRAM) y.* y.tab.* *.output
