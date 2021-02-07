@@ -2,7 +2,5 @@
 
 ### Steps to make project
 
-```
-make
-./code < input.txt`
-```
+- `make` To make the project
+- `./code < input.txt` To execute the sample input file
