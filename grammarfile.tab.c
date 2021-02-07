@@ -100,6 +100,14 @@ Maintained by Magnus Ekdahl <magnus@debian.org>
  #line 88 "/usr/share/bison++/bison.cc"
 #line 1 "grammarfile.y"
 
+
+	/*
+		Name: PRATHIT NANDKESHAV ASWAR
+		Roll No: BT18CSE010
+		LP Assignment 1: Lex & Yacc
+
+		A parser for variable declarations
+	*/
     #include <stdio.h>			
     #include <stdlib.h>
     #include <ctype.h> 
@@ -110,7 +118,7 @@ Maintained by Magnus Ekdahl <magnus@debian.org>
 
     int symbolics[52];
 
-#line 14 "grammarfile.y"
+#line 22 "grammarfile.y"
 typedef union {
 	double dval;
 	int ival;
@@ -623,12 +631,12 @@ static const short yyrhs[] = {    42,
 
 #if (YY_parse_DEBUG != 0) || defined(YY_parse_ERROR_VERBOSE) 
 static const short yyrline[] = { 0,
-    35,    36,    40,    41,    45,    46,    47,    48,    52,    53,
-    54,    55,    59,    60,    64,    65,    69,    70,    71,    75,
-    80,    81,    85,    86,    90,    94,    95,    96,    97,    98,
-   102,   106,   107,   111,   112,   116,   117,   120,   121,   125,
-   135,   147,   148,   152,   153,   154,   155,   156,   160,   161,
-   162,   166,   167,   171,   175,   179,   183,   184
+    43,    44,    48,    49,    53,    54,    55,    56,    60,    61,
+    62,    63,    67,    68,    72,    73,    77,    78,    79,    83,
+    88,    89,    93,    94,    98,   102,   103,   104,   105,   106,
+   110,   114,   115,   119,   120,   124,   125,   128,   129,   133,
+   143,   155,   156,   160,   161,   162,   163,   164,   168,   169,
+   170,   174,   175,   179,   183,   187,   191,   192
 };
 
 static const char * const yytname[] = {   "$","error","$illegal.","PTR_OP","AND_OP",
@@ -1237,7 +1245,7 @@ YYLABEL(yyreduce)
   switch (yyn) {
 
 case 40:
-#line 126 "grammarfile.y"
+#line 134 "grammarfile.y"
 {
 		union valptr addr;
 		addr.i = (int*)malloc(sizeof(int));
@@ -1249,7 +1257,7 @@ case 40:
 	;
     break;}
 case 41:
-#line 136 "grammarfile.y"
+#line 144 "grammarfile.y"
 {
 		union valptr addr;
 		addr.i = (int*)malloc(sizeof(int));
@@ -1260,7 +1268,7 @@ case 41:
 	;
     break;}
 case 54:
-#line 172 "grammarfile.y"
+#line 180 "grammarfile.y"
 {
 		// pushVarSym();
 	;
@@ -1469,7 +1477,7 @@ YYLABEL(yyerrhandle)
 /* END */
 
  #line 1038 "/usr/share/bison++/bison.cc"
-#line 187 "grammarfile.y"
+#line 195 "grammarfile.y"
 
 
 

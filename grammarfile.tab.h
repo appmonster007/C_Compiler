@@ -13,7 +13,7 @@
 
  #line 8 "/usr/share/bison++/bison.h"
 
-#line 14 "grammarfile.y"
+#line 22 "grammarfile.y"
 typedef union {
 	double dval;
 	int ival;
