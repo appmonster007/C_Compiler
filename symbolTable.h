@@ -65,8 +65,13 @@ void pushfucsym
     char* id_literal,
     struct varsym *list
 );
-void pushVarSym();
 
+void pushVarSym
+(
+    union valptr addr,
+    enum dataTYPE valTYPE,
+    char* id_literal
+);
 void dumpSymTab();
 
 

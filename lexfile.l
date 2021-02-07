@@ -5,10 +5,10 @@
 	#include "symbolTable.h"
     #include <string.h>
     
+    char t = 'A';
 
     #define ECHO fwrite(yytext, yyleng, 1, yyout)
     void incCount(int inc);
-    char t = 'A';
 
 %}
 
@@ -26,7 +26,7 @@ IS			(u|U|l|L)*
 "float"								{ECHO; return(FLOAT); }
 "print"		                        {ECHO; return(PRINT);}
 "void"			                    {ECHO; return(VOID); }
-"while"								{ECHO; return (WHILE);}
+"while"								{ECHO; yylval.strval = strdup(yytext); return (WHILE);}
 ";"									{ECHO; return(yytext[0]); }
 ("{"|"<%")							{ECHO; incCount(+1); return(yytext[0]); }
 ("}"|"%>")							{ECHO; incCount(-1); return(yytext[0]);}
@@ -52,8 +52,8 @@ IS			(u|U|l|L)*
 "|"									{ECHO; return(yytext[0]); }
 "?"									{ECHO; return(yytext[0]); }
 L?\"(\\.|[^\\"])*\"                 {ECHO; return(LITERAL); }
-{L}({L}|{D})*						{ECHO; return(IDENTIFIER);}
-[0-9]*								{yylval = atoi(yytext); ECHO; return (CONSTANT);}
+{L}({L}|{D})*						{ECHO; yylval.strval = strdup(yytext); return(IDENTIFIER);}
+[0-9]*								{ECHO; yylval.ival = atoi(yytext); return (CONSTANT);}
 [ \t\v\n\f]		                    {ECHO;}
 .									{}
 
@@ -69,7 +69,7 @@ void incCount(int inc){
     }
     else
         popScope();
-    printf(" // scope <=> %d\n",curScope->scopeDepth);
+    // printf(" // scope <=> %d\n",curScope->scopeDepth);
 }
 
 int yywrap(void){

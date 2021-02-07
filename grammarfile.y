@@ -10,6 +10,13 @@
     int symbolics[52];
 %}
 
+
+%union {
+	double dval;
+	int ival;
+	char* strval;
+}
+
 %token PTR_OP 
 %token AND_OP OR_OP MOD_ASSIGN 
 %token LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
@@ -116,7 +123,25 @@ init_declarator_list
 
 init_declarator
 	: declarator
+	{
+		union valptr addr;
+		addr.i = (int*)malloc(sizeof(int));
+		*(addr.i) = 0;
+		// printf("\t->%d\t", *(addr.i));
+
+		enum dataTYPE valTYPE = INT;
+		pushVarSym(addr, valTYPE, $1.strval);
+		// printf("[%s]",$1.strval);
+	}
 	| declarator '=' initializer
+	{
+		union valptr addr;
+		addr.i = (int*)malloc(sizeof(int));
+		*(addr.i) = $3.ival;
+		enum dataTYPE valTYPE = INT;
+		pushVarSym(addr, valTYPE, $1.strval);
+		// printf("[%s = %d]",$1.strval, $3.ival);
+	}
 	;
 
 declaration_specifiers
@@ -145,6 +170,9 @@ initializer_list
 
 assignment_expression
 	: assignment_operator assignment_expression
+	{
+		// pushVarSym();
+	}
     | CONSTANT
 	;
 
@@ -163,7 +191,7 @@ expression
 int main()
 {
 	initScope();
-	printf(" // scope <=> %d\n",curScope->scopeDepth);
+	// printf(" // scope <=> %d\n",curScope->scopeDepth);
 	int k = yyparse();
 	dumpSymTab();
 	return k;

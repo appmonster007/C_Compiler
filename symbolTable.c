@@ -81,8 +81,37 @@ void pushfucsym
     }
     
 }
-void pushVarSym(){
-    curScope->varCount+=1;
+
+void pushVarSym
+(
+    union valptr addr,
+    enum dataTYPE valTYPE,
+    char* id_literal
+){
+    // printf("=>%d\n", *addr.i);
+    curScope->varCount += 1;
+    struct varsym** temp = (struct varsym**)malloc((curScope->varCount)*(sizeof(struct varsym*)));
+    
+    if(curScope->varList!=NULL){
+        int i;
+        for(i = 0; i<curScope->varCount-1; i++)
+        {
+            temp[i] = (curScope->varList)[i];
+        }
+        free(curScope->varList);
+        temp[i] = (struct varsym*)malloc(sizeof(struct varsym));
+        temp[i]->id_literal = strdup(id_literal);
+        temp[i]->addr = addr;
+        temp[i]->valTYPE = valTYPE;
+        curScope->varList = temp;
+    } else {
+        temp[0] = (struct varsym*)malloc(sizeof(struct varsym));
+        temp[0]->id_literal = strdup(id_literal);
+        temp[0]->valTYPE = valTYPE;
+        temp[0]->addr = addr;
+
+        curScope->varList = temp;
+    }
 }
 
 
@@ -95,17 +124,21 @@ void dumpSymTab(){
         pushScopeQueue(temp);
         
         while(NULL!=(temp = popScopeQueue())){
-            printf("\n%s:: scope count : %d, var count : %d\n", 
+            printf("\n%s:: \n\tscope count : %d, \n\tvar count : %d\n", 
                 temp->id_literal, 
                 temp->scopeCount,
                 temp->varCount
             );
             for(int i=0; i<temp->scopeCount; i++){
-                printf("->");
-                printf("\t%s:\n",((temp->scopeList)[i])->id_literal);
+                printf("---->");
+                printf("\t%s\n",((temp->scopeList)[i])->id_literal);
                 pushScopeQueue((temp->scopeList)[i]);
             }
-            printf("-------------------------------------\n");
+            for(int i=0; i<temp->varCount; i++){
+                printf("==>");
+                printf("\t%s: %d\n",((temp->varList)[i])->id_literal, *(((temp->varList)[i])->addr.i));
+            }
+            printf("--------------------------------------------------\n");
         }
     }
 }

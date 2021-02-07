@@ -1,20 +1,19 @@
 int x, y;  
    
-int main() 
+int mufflere() 
 {
 	int x;
 	while(1) 
 	{
 		int j = 65;
-		float x;
+		int x;
 		int y, z;
 	}
 	
 }
 
-
-int main() 
+int defcon() 
 {
-	
-	
+	int maxlyfe = 43;
+	int goto;
 }
