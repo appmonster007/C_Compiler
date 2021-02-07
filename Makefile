@@ -9,7 +9,6 @@ PROGRAM		= parser lexer code
 
 all:		$(PROGRAM)  
 
-
 parser:		$(GF).y
 		bison $(YFLAGS) $(GF).y
 
