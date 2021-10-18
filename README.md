@@ -1,12 +1,6 @@
 # C_Compiler #
+## Simple C parser
 
-####
-    Name: PRATHIT NANDKESHAV ASWAR
-    Roll No: BT18CSE010
-    LP Assignment 1: Lex & Yacc
-    
-    A parser for variable declarations
-####
 
 ### Steps to make project
 
